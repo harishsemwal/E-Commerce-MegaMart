@@ -1,8 +1,10 @@
-import React from "react";
-import "./Navbar.css";
-import logo from "../Assests/logo.png";
+import React, { useState } from "react";
+import "./Navbar.css"
+import logo from "../Assests/logo.png"; 
 import cart_icon from "../Assests/hand_icon.png";
+
 function Navbar() {
+  const [menu, setMenu] = useState("Shop");
   return (
     <div className="navbar">
       <div className="navbar-logo">
@@ -10,18 +12,38 @@ function Navbar() {
         <p>MegaMart</p>
       </div>
       <ul className="navbar-menu">
-        <li>SHOP</li>
-        <li>MEN</li>
-        <li>WOMEN</li>
-        <li>KIDS</li>
+        <li onClick={() => setMenu("shop")}>
+          <a href="/shop" style={{ textDecoration: "none" }}>
+            SHOP{menu === "shop" && <hr />}
+          </a>
+        </li>
+        <li onClick={() => setMenu("mens")}>
+          <a href="/mens" style={{ textDecoration: "none" }}>
+            MEN{menu === "mens" && <hr />}
+          </a>
+        </li>
+        <li onClick={() => setMenu("womens")}>
+          <a href="/womens" style={{ textDecoration: "none" }}>
+            WOMEN{menu === "womens" && <hr />}
+          </a>
+        </li>
+        <li onClick={() => setMenu("kids")}>
+          <a href="/kids" style={{ textDecoration: "none" }}>
+            KIDS{menu === "kids" && <hr />}
+          </a>
+        </li>
       </ul>
       <div className="navbar-login-cart">
-        <button>Login</button>
-        <img src={cart_icon} alt="Cart Icon" />
+        <a href="/login">
+          <button>Login</button>
+        </a>
+        <a href="/cart">
+          <img src={cart_icon} alt="Cart Icon" />
+        </a>
+        <div className="nav-cart-count">0</div>
       </div>
     </div>
   );
 }
-
 
 export default Navbar;
