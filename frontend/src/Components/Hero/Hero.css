@@ -1,6 +1,6 @@
 .hero {
   height: 100vh;
-  background: linear-gradient(180deg, #fde1ff, #d289ea22); /* Gradient background */
+  background: linear-gradient(180deg, #fde1ff, #e1ffea22); /* Gradient background */
   display: flex;
 }
 
@@ -32,9 +32,8 @@
   gap: 20px;
 }
 
-.hand-icon p {
-  margin-right: 10px;
-  font-weight: bold;
+.hand-icon img {
+  height: 105px;
 }
 
 .hero-latest-btn {
@@ -52,11 +51,13 @@
   font-weight: 500;
 }
 
-.hero-latest-btn div {
-  margin-right: 10px;
-  font-weight: bold;
+.hero-right {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
-
+/* 
 .hero-right img {
-  width: 105px;
-}
+  width: 700px;
+} */
