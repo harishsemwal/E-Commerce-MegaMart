@@ -1,28 +1,29 @@
-import React from 'react';
-import './popular.css';
-import data_product from '../Assests/data';
+import React from "react";
+import "./popular.css";
+import data_product from "../Assests/data";
+import Item from "../items/item";
 
 const Popular = () => {
   return (
-    <div className='popular'>
+    <div className="popular">
       <h1>POPULAR IN WOMEN</h1>
       <hr />
       <div className="popular-item">
-        {data_product.map((item) => {
+        {data_product.map((product) => {
           return (
-            <div key={item.id} className='item'>
-              <img src={item.image} alt={item.name} />
-              <h3>{item.name}</h3>
-              <p>NEW</p>
-              <p>Rs. {item.new_price}</p>
-              <p>Rs. {item.old_price}</p>
-              <button>Add to Cart</button>
-            </div>
+            <Item
+              key={product.id}
+              id={product.id}
+              name={product.name}
+              image={product.image}
+              new_price={product.new_price}
+              old_price={product.old_price}
+            />
           );
         })}
       </div>
     </div>
   );
-}
+};
 
 export default Popular;

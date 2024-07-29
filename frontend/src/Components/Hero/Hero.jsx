@@ -11,7 +11,7 @@ function Hero() {
         <h2>Welcome to MegaMart</h2>
         <div>
           <div className="hand-icon">
-            <p>new</p>
+            <p>New</p>
             <img src={hand_icon} alt="Hand Icon" />
           </div>
           <p>Collections</p>

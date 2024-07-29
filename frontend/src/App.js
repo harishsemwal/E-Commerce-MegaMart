@@ -1,14 +1,19 @@
-import logo from './logo.svg';
+// import logo from './logo.svg';
 import './App.css';
 import Navbar from './Components/Navbar/Navbar';
 import Hero from './Components/Hero/Hero';
-import popular from './Components/Popular/popular';
+import Popular from './Components/Popular/popular';
+import Offers from './Components/Offers/Offers';
+import NewCollections from './Components/NewCollections/NewCollections';
 
 function App() {
   return (
      <>
      <Navbar/>
      <Hero/>
+     <Popular/>
+     <Offers/>
+     <NewCollections/>
      </>
   );
 }
