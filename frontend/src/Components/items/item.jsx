@@ -1,5 +1,5 @@
 import React from 'react'
-import './item.css'
+import './Item.css'
 function item(props) {
   return (
     <div className='item'>

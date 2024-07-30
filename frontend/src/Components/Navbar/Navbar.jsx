@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import "./Navbar.css"
 import logo from "../Assests/logo.png"; 
-import cart_icon from "../Assests/hand_icon.png";
+import cart_icon from "../Assests/cart_icon.png";
 
 function Navbar() {
   const [menu, setMenu] = useState("Shop");
@@ -12,8 +12,8 @@ function Navbar() {
         <p>MegaMart</p>
       </div>
       <ul className="navbar-menu">
-        <li onClick={() => setMenu("shop")}>
-          <a href="/shop" style={{ textDecoration: "none" }}>
+        <li onClick={() => setMenu("/shop")}>
+          <a href="/" style={{ textDecoration: "none" }}>
             SHOP{menu === "shop" && <hr />}
           </a>
         </li>
