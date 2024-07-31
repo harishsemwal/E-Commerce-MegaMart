@@ -5,6 +5,7 @@ import Offers from "../Components/Offers/Offers.jsx";
 import NewCollections from "../Components/NewCollections/NewCollections.jsx";
 import NewLatter from "../Components/NewLatter/NewLetter.jsx";
 import '../App.js'
+// import LoginSignUp from "./LoginSignUp.jsx";
 function Shop() {
   return (
     <div>

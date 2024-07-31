@@ -3,7 +3,7 @@ import './Item.css'
 function item(props) {
   return (
     <div className='item'>
-        <img src={props.image} alt="" />
+        <link to = {`/Product/${props.id}`}></link><img src={props.image} alt="" />
         <p>{props.name}</p>
         <div className="items-prices">
             <div className="item-price-new">
