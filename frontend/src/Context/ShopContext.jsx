@@ -6,6 +6,8 @@ export const ShopContext = React.createContext(null);
 const ShopContextProvider = (props) =>{
     const contextValue = {all_products};
 
+    
+
     return (
         <ShopContext.Provider value={contextValue}>
             {props.children}
