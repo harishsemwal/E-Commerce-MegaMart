@@ -6,7 +6,6 @@ const connectDatabase = require("./config/database");
 
 dotenv.config({path: "megamart-backend/config/config.env"});
 
-
 //connect with database
 connectDatabase();
 
