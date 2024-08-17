@@ -1,7 +1,7 @@
 import React from 'react'
 import './NewCollections.css'
-import new_Collection from '../Assests/new_collections'
-import Item from '../Items/Item'
+import new_Collection from '../Assets/new_collections'
+import Item from '../Items/Items'
 
 function NewCollections() {
   return (
@@ -23,3 +23,5 @@ function NewCollections() {
     </div>
   )
 }
+
+export default NewCollections;

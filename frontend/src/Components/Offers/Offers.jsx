@@ -1,6 +1,6 @@
 import React from "react";
 import "./Offers.css";
-import exclusive_images from "../Assests/exclusive_image.png";
+import exclusive_images from "../Assets/exclusive_image.png";
 function Offers() {
   return (
     <div className="Offers">
