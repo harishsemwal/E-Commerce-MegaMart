@@ -1,28 +1,30 @@
-import React from "react";
+import React, { useContext } from "react";
 import "./ProductDisplay.css";
 import star_icon from "../Assets/star_icon.png";
 import star_dull_icon from "../Assets/star_dull_icon.png";
-function ProductDisplay(props) {
-  const { Product } = props;
+import { ShopContext } from "../../Context/ShopContext";
+
+function ProductDisplay({ product }) {
+  const { addToCart } = useContext(ShopContext);
   return (
     <div className="ProductDisplay">
       <div className="Product-Display-left">
         <div className="Product-Display-image-list">
-          <img src={Product.image} alt="" />
-          <img src={Product.image} alt="" />
-          <img src={Product.image} alt="" />
-          <img src={Product.image} alt="" />
+          <img src={product.image} alt="" />
+          <img src={product.image} alt="" />
+          <img src={product.image} alt="" />
+          <img src={product.image} alt="" />
         </div>
         <div className="Product-Display-image">
           <img
             className="Product-Display-Main-img"
-            src={Product.image}
+            src={product.image}
             alt=""
           />
         </div>
       </div>
       <div className="Product-Display-right">
-        <h1>{Product.name}</h1>
+        <h1>{product.name}</h1>
         <div className="Product-Display-Right-star">
           <img src={star_icon} alt="" />
           <img src={star_icon} alt="" />
@@ -33,15 +35,15 @@ function ProductDisplay(props) {
         </div>
         <div className="Product-Display-Right-Prices">
           <div className="ProductDisplay-Right-Prices-Old">
-            ${Product.old_price * 60}
+            ${product.old_price * 60}
           </div>
           <div className="ProductDisplay-Right-Price-New">
-            ${Product.new_price * 20}
+            ${product.new_price * 20}
           </div>
         </div>
-        <div className="ProductDisplay-right-discription">
+        <div className="ProductDisplay-right-description">
           A lightweight, usually knitted, pullover shirt, close-fitting a round
-          neckline and short sleeves, worn as an under shirt.
+          neckline and short sleeves, worn as an undershirt.
         </div>
         <div className="ProductDisplay-Right-size">
           <h1>Select Size</h1>
@@ -53,9 +55,9 @@ function ProductDisplay(props) {
             <div>XXL</div>
           </div>
         </div>
-        <button>ADD TO CART</button>
+        <button onClick={() => addToCart(product.id)}>ADD TO CART</button>
         <p className="Product-Display-Right-Category">
-          <span>Category: </span>Women, T-Shirt Crop Top
+          <span>Category: </span>{product.category}, T-Shirt Crop Top
         </p>
         <p className="Product-Display-right-brand">
           <span>Tags: </span>Modern, Late{" "}

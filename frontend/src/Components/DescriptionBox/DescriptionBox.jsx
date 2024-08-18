@@ -1,5 +1,6 @@
 import React from "react";
 import "./DescriptionBox.css";
+
 function DescriptionBox() {
   return (
     <div className="DescriptionBox">
