@@ -52,3 +52,27 @@
   background-size: 16px;
   cursor: pointer;
 }
+
+@media(max-width: 1280px) {
+  .NewsLetter {
+    padding: 0px 80px;
+    margin-bottom: 120px;
+    gap: 20px
+  }
+  .NewsLetter h1 {
+    font-size: 36px;
+  }
+  .NewsLetter p {
+    font-size: 18px;
+  }
+  .NewsLetter div {
+    width: 100%;
+    padding: 0px 20px;
+  }
+  .NewsLetter input {
+    width: 100%;
+  }
+  .NewsLetter div button {
+    width: 100%;
+  }
+}
