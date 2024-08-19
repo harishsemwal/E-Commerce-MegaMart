@@ -5,11 +5,11 @@
   font-family: Arial, sans-serif;
 }
 
-.Fotter-logo {
+.fotter-logo {
   margin-bottom: 20px;
 }
 
-.Fotter-logo img {
+.fotter-logo img {
   width: 150px;
 }
 
@@ -63,4 +63,30 @@
 .footer-copyright p {
   color: #6c757d;
   font-size: 14px;
+}
+
+@media (max-width: 800px){
+  .fotter{
+    gap: 20px;
+  }
+  .fotter-logo{
+    gap: 10px;
+    align-items: end;
+  }
+  .fotter-logo img{
+    width: 40px;
+  }
+  .fotter-logo p{
+    font-size: 25px;
+  }
+  .footer-links{
+    font-size: 14px;
+    gap: 10px;
+  }
+  .footer-socail-icon img{
+    width: 22px;
+  }
+  .footer-copyright {
+    font-size: 13px;
+  }
 }

@@ -7,7 +7,7 @@ import whatsapp_icon from "../Assets/whatsapp_icon.png";
 function Fotter() {
   return (
     <div className="fotter">
-      <div className="Fotter-logo">
+      <div className="fotter-logo">
         <img src={footer_logo} alt="" />
         <p></p>
       </div>
