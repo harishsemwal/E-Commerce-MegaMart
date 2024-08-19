@@ -126,5 +126,23 @@ button:hover {
     font-size: 14px;
     gap: 10px;
   }
-  
+}
+
+@media(max-width:800){
+  .loginSignUp-Container{
+    padding: 20px 30px;
+  }
+  .loginSignUp-Container h1{
+    font-size: 24px;
+  }
+  .loginSignUp-fields{
+    margin-top: 20px;
+  }
+  .loginSignUp-fields input{
+    height: 50px;
+  }
+  .loginSignUp-Container button{
+    height: 50px;
+    font-size: 16px;
+  }
 }

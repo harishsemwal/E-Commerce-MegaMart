@@ -4,10 +4,10 @@ import data_product from '../Assets/data'
 import Item from '../Items/Items'
 function RelatedProduct() {
   return (
-    <div className='RelatedProduct'>
+    <div className='relatedProduct'>
         <h1>Related Products</h1>
         <hr />
-        <div className='Related-Products-item'>
+        <div className='relatedProduct-item'>
             {data_product.map((item, i)=>{
                 return (
                     <Item 
