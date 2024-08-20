@@ -8,12 +8,12 @@ import RelatedProduct from "../Components/RelatedProducts/RelatedProduct";
 
 function Product() {
   const { all_products } = useContext(ShopContext);
-  const { productid } = useParams();  // Ensure 'productid' matches the route parameter
-  const product = all_products.find((e) => e.id === Number(productid));  // Convert to number for comparison
-
+  const { productid } = useParams();  
+  const product = all_products.find((e) => e.id === Number(productid));
   if (!product) {
     return <div>Product not found</div>;
   }
+  
 
   return (
     <div>

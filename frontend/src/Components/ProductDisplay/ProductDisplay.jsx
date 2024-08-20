@@ -35,10 +35,10 @@ function ProductDisplay({ product }) {
         </div>
         <div className="Product-Display-Right-Prices">
           <div className="ProductDisplay-Right-Prices-Old">
-            ${product.old_price * 60}
+            ${product.old_price * 80}
           </div>
           <div className="ProductDisplay-Right-Price-New">
-            ${product.new_price * 20}
+            ${product.new_price * 80}
           </div>
         </div>
         <div className="ProductDisplay-right-description">

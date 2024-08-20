@@ -1,12 +1,13 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import "./Items.css";
-function item(props) {
+
+function Item(props) {
   return (
     <div className="item">
       <Link to={`/Product/${props.id}`}>
         <img
-          onClick={window.scrollTo(0, 0)}
+          onClick={() => window.scrollTo(0, 0)}
           src={props.image}
           alt={props.name}
         />
@@ -20,4 +21,4 @@ function item(props) {
   );
 }
 
-export default item;
+export default Item;

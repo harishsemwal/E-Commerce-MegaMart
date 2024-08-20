@@ -96,52 +96,52 @@ button:hover {
   color: #666;
 }
 
-@media(max-width:1280px){
-  .loginSignup{
+@media (max-width: 1280px) {
+  .loginSignup {
     padding-top: 50px;
   }
-  .loginSignUp-Container{
+  .loginSignUp-Container {
     width: auto;
     max-width: 500px;
     max-height: 500px;
   }
-  .loginSignUp-Container h1{
+  .loginSignUp-Container h1 {
     margin: 10px 0px;
   }
-  .loginSignUp-fields input{
+  .loginSignUp-fields input {
     gap: 20px;
     margin-top: 20px;
   }
-  .loginSignup input{
+  .loginSignup input {
     height: 65px;
     width: 93%;
   }
-  .loginSignUp-Container button{
+  .loginSignUp-Container button {
     width: 100%;
   }
-  .loginsignup-login{
+  .loginsignup-login {
     font-size: 16px;
   }
-  .loginsignUp-agree{
+  .loginsignUp-agree {
     font-size: 14px;
     gap: 10px;
   }
 }
 
-@media(max-width:800){
-  .loginSignUp-Container{
+@media (max-width: 800px) {
+  .loginSignUp-Container {
     padding: 20px 30px;
   }
-  .loginSignUp-Container h1{
+  .loginSignUp-Container h1 {
     font-size: 24px;
   }
-  .loginSignUp-fields{
+  .loginSignUp-fields {
     margin-top: 20px;
   }
-  .loginSignUp-fields input{
+  .loginSignUp-fields input {
     height: 50px;
   }
-  .loginSignUp-Container button{
+  .loginSignUp-Container button {
     height: 50px;
     font-size: 16px;
   }
