@@ -21,6 +21,7 @@ if (!fs.existsSync(uploadDir)){
 const dbPassword = encodeURIComponent('Harish2004@');
 const dbURI = `mongodb+srv://harishsemwal581:${dbPassword}@cluster0.l95x6.mongodb.net/?retryWrites=true&w=majority`;
 
+
 mongoose.connect(dbURI, {
     useNewUrlParser: true,
     useUnifiedTopology: true,
