@@ -3,7 +3,7 @@ import "./AddProduct.css";
 import upload_area from "../../assets/upload_area.svg";
 
 const AddProduct = () => {
-  const [image, setImage] = useState(false);
+  const [image, setImage] = useState(null);
   const [ProductDetails, setProductDetails] = useState({
     name: "",
     old_price: "",
@@ -23,6 +23,52 @@ const AddProduct = () => {
 
   const Add_Product = async () => {
     console.log(ProductDetails);
+    let product = ProductDetails;
+
+    let formData = new FormData();
+    formData.append("product", image);
+
+    try {
+      const uploadResponse = await fetch("http://localhost:4000/upload", {
+        method: "POST",
+        headers: {
+          Accept: "application/json",
+        },
+        body: formData,
+      });
+
+      const responseData = await uploadResponse.json();
+
+      if (responseData.success) {
+        product.image = responseData.image_url;
+        console.log(product);
+
+        const addProductResponse = await fetch(
+          "http://localhost:4000/addproduct",
+          {
+            method: "POST",
+            headers: {
+              Accept: "application/json",
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify(product),
+          }
+        );
+
+        const addProductData = await addProductResponse.json();
+
+        if (addProductData.success) {
+          alert("Product added successfully");
+        } else {
+          alert("Product not added successfully");
+        }
+      } else {
+        alert("Image upload failed");
+      }
+    } catch (error) {
+      console.error("Error adding product:", error);
+      alert("An error occurred while adding the product.");
+    }
   };
 
   return (

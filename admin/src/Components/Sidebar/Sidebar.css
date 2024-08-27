@@ -4,7 +4,7 @@
     padding-top: 30px;
     gap: 20px;
     width: 300px; /* Increased width */
-    height: 100vh; /* Full height of the viewport */
+    height: 80vh; /* Full height of the viewport */
     background: #1538e7;
     box-shadow: 2px 0 5px rgba(55, 76, 237, 0.1);
     transition: all 0.3s ease;
@@ -55,7 +55,7 @@
     .sidebar {
         width: 300px; 
         padding: 20px 10px;
-        height: 100vh;
+        height: 87vh;
     }
 
     .sidebar-item {
