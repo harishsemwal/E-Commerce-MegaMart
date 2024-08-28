@@ -8,6 +8,9 @@ const path = require("path");
 const cors = require("cors");
 const fs = require("fs");
 
+// Use environment variables for sensitive information
+const JWT_SECRET = process.env.JWT_SECRET || "your_default_secret"; // Replace 'your_default_secret' with a secure default if needed
+
 app.use(express.json());
 app.use(cors());
 
@@ -88,9 +91,10 @@ const Product = mongoose.model("Product", {
   },
   date: {
     type: Date,
-    default: Date.now(),
+    default: Date.now,
   },
-  avilable: {
+  available: {
+    // Correct spelling from 'avilable' to 'available'
     type: Boolean,
     default: true,
   },
@@ -127,7 +131,6 @@ app.post("/addproduct", async (req, res) => {
       old_price,
     });
 
-    console.log(product);
     await product.save();
     console.log("Saved");
 
@@ -147,15 +150,29 @@ app.post("/addproduct", async (req, res) => {
 
 // Creating API for Delete Products
 app.post("/removeproduct", async (req, res) => {
-  await Product.findOneAndDelete({ id: req.body.id });
-  console.log("Removed");
-  res.json({
-    success: true,
-    message: "Product deleted successfully",
-  });
+  try {
+    const result = await Product.findOneAndDelete({ id: req.body.id });
+    if (!result) {
+      return res.status(404).json({
+        success: false,
+        message: "Product not found",
+      });
+    }
+    console.log("Removed");
+    res.json({
+      success: true,
+      message: "Product deleted successfully",
+    });
+  } catch (error) {
+    console.error("Error removing product:", error);
+    res.status(500).json({
+      success: false,
+      message: "An error occurred while deleting the product",
+    });
+  }
 });
 
-// Create API for getting all products.
+// Create API for getting all products
 app.get("/allproduct", async (req, res) => {
   try {
     let products = await Product.find({});
@@ -171,7 +188,6 @@ app.get("/allproduct", async (req, res) => {
 });
 
 // Schema Creating for User Model
-
 const Users = mongoose.model("Users", {
   name: {
     type: String,
@@ -188,48 +204,174 @@ const Users = mongoose.model("Users", {
   },
   cartData: {
     type: Object,
+    default: {}, // Default to empty object
   },
   date: {
     type: Date,
-    default: Date.now(),
+    default: Date.now,
+  },
+});
+
+// Creating endpoint for registering the user
+app.post("/signup", async (req, res) => {
+  try {
+    let check = await Users.findOne({ email: req.body.email });
+    if (check) {
+      return res.status(400).json({
+        success: false,
+        message: "Email already exists",
+      });
+    }
+
+    const cart = {}; // Initialize as an empty object
+
+    const user = new Users({
+      name: req.body.name,
+      email: req.body.email,
+      password: req.body.password,
+      cartData: cart,
+    });
+    await user.save();
+
+    // JWT
+    const data = {
+      user: {
+        id: user.id,
+      },
+    };
+
+    const token = jwt.sign(data, JWT_SECRET, { expiresIn: "1h" }); // Set token expiration time
+    res.json({
+      success: true,
+      message: "User created successfully",
+      token,
+    });
+  } catch (error) {
+    console.error("Error signing up user:", error);
+    res.status(500).json({
+      success: false,
+      message: "An error occurred while creating the user",
+    });
   }
 });
 
-// Creating end point for registering the user
-app.post('/signup', async (req, res) => {
-  let check = await Users.findOne({email: req.body.email});
-  if(check) {
-    return res.status(400).json({
-      success: false,
-      errors: 'Exsting User Found',
-      message: "Email already exists"
-    });
+// Creating endpoint for logging in the user
+
+app.post("/login", async (req, res) => {
+  let user = await Users.findOne({ email: req.body.email });
+  if (user) {
+    const passCompare = req.body.password === user.password;
+    if (passCompare) {
+      const data = {
+        user: {
+          id: user.id,
+        },
+      };
+      const token = jwt.sign(data, JWT_SECRET, { expiresIn: "1h" });
+      res.json({
+        success: true,
+        message: "User logged in successfully",
+        token,
+      });
+    } else {
+      res.json({ success: false, errors: "Wrong Password" });
+    }
+  } else {
+    res.json({ success: false, errors: "User not found" });
   }
-  let cart = {};
-  for(let i = 0; i < 300; i++){
-    cart[i] = 0;
+});
+
+// Creating endpoint for adding products to cart
+
+app.get("/newcollections", async (req, res) => {
+  let products = await Product.find({});
+  let newCollection = products.slice(1).slice(-8);
+  console.log("New Collection Fetched");
+  res.send(newCollection);
+});
+
+// create endpoint for adding products to popluar in women
+
+app.get("/popluarinwomen", async (req, res) => {
+  let products = await Product.find({ category: "women" });
+  let popular_in_women = products.slice(0, 4);
+  console.log("Popular in women fatched..");
+  res.send(popular_in_women);
+});
+
+// Middleware to fetch user
+const fetchUserMiddleware = async (req, res, next) => {
+  const token = req.header("auth-token");
+  if (!token) {
+    return res
+      .status(401)
+      .send({ error: "Please authenticate using a valid token" });
   }
-  const user = new Users({
-    name: req.body.name,
-    email: req.body.email,
-    password: req.body.password,
-    cartData: cart
-  })
-  await user.save();
-
-  // JWT
-  const data = {
-    user : {}
+  try {
+    const decoded = jwt.verify(token, JWT_SECRET);
+    req.user = decoded.user;
+    next();
+  } catch (error) {
+    res.status(401).send({ error: "Token is not valid" });
   }
-})
+};
 
+// Endpoint to add products to cart
+app.post("/addtocart", fetchUser, async (req, res) => {
+  try {
+    let userData = await Users.findOne({ _id: req.user.id });
+    userData.cartData[req.body.id] = (userData.cartData[req.body.id] || 0) + 1;
+    await Users.findByIdAndUpdate(
+      { _id: req.user.id },
+      { cartData: userData.cartData }
+    );
 
+    res.send("Added to cart successfully");
+  } catch (error) {
+    res.status(500).send({ error: "Internal server error" });
+  }
+});
 
+// Endpoint to remove a product from cart
+app.post("/removefromcart", fetchUserMiddleware, async (req, res) => {
+  try {
+    let userData = await Users.findOne({ _id: req.user.id });
+    const productId = req.body.id;
+
+    // Check if the product exists in the cart
+    if (userData.cartData[productId]) {
+      if (userData.cartData[productId] > 1) {
+        // Decrement the quantity if more than 1
+        userData.cartData[productId] -= 1;
+      } else {
+        // Remove the product if the quantity is 1
+        delete userData.cartData[productId];
+      }
+      await Users.findByIdAndUpdate(
+        { _id: req.user.id },
+        { cartData: userData.cartData }
+      );
+      res.send("Removed from cart successfully");
+    } else {
+      res.status(404).send({ error: "Product not found in cart" });
+    }
+  } catch (error) {
+    res.status(500).send({ error: "Internal server error" });
+  }
+});
+
+// creating endpoint to get cartdata
+app.post("/getcart", fetchUser, async (req, res) => {
+  console.log("GetCart");
+  let userData = await Users.findOne({ _id: req.user.id });
+  res.send(userData.cartData);
+});
 
 app.listen(port, (error) => {
   if (!error) {
     console.log(`Server is running on port ${port}`);
   } else {
-    console.log("Error in connecting to MongoDB", error);
+    console.log("Error in connecting to server", error);
   }
 });
+ 
