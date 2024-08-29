@@ -317,15 +317,15 @@ const fetchUserMiddleware = async (req, res, next) => {
 };
 
 // Endpoint to add products to cart
-app.post("/addtocart", fetchUser, async (req, res) => {
+app.post("/addtocart", fetchUserMiddleware, async (req, res) => {
   try {
-    let userData = await Users.findOne({ _id: req.user.id });
-    userData.cartData[req.body.id] = (userData.cartData[req.body.id] || 0) + 1;
-    await Users.findByIdAndUpdate(
-      { _id: req.user.id },
-      { cartData: userData.cartData }
-    );
+    const user = await Users.findById(req.user.id);
 
+    if (!user) {
+      return res.status(404).send({ error: "User not found" });
+    }
+    user.cartData[req.body.id] = (user.cartData[req.body.id] || 0) + 1;
+    await Users.findByIdAndUpdate(req.user.id, { cartData: user.cartData });
     res.send("Added to cart successfully");
   } catch (error) {
     res.status(500).send({ error: "Internal server error" });
@@ -361,7 +361,7 @@ app.post("/removefromcart", fetchUserMiddleware, async (req, res) => {
 });
 
 // creating endpoint to get cartdata
-app.post("/getcart", fetchUser, async (req, res) => {
+app.post("/getcart", fetchUserMiddleware, async (req, res) => {
   console.log("GetCart");
   let userData = await Users.findOne({ _id: req.user.id });
   res.send(userData.cartData);

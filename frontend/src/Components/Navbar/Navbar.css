@@ -2,13 +2,13 @@
 
 .navbar {
   display: flex;
+  align-items: center;
   justify-content: space-between;
-  align-items: center;
-  background-color: #333;
-  padding: 10px 20px;
-  color: white;
-  font-family: Arial, sans-serif;
-  align-items: center;
+  padding: 1.5rem 3rem;
+  background-color: #1a1a2e;
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+  position: relative;
+  z-index: 1000;
 }
 
 .navbar-logo {
@@ -17,180 +17,115 @@
 }
 
 .navbar-logo img {
-  height: 40px;
-  margin-right: 10px;
+  height: 50px;
+  margin-right: 12px;
+  border-radius: 8px;
 }
 
 .navbar-logo p {
-  font-size: 1.5em;
-  font-weight: bold;
+  color: #f5f5f5;
+  font-size: 2rem;
+  font-weight: 700;
+  letter-spacing: 1px;
+}
+
+.nav-dropdown {
+  display: none;
+  height: 35px;
+  cursor: pointer;
+  transition: transform 0.3s ease, filter 0.3s ease;
+  filter: brightness(0) invert(1);
 }
 
 .navbar-menu {
-  list-style: none;
   display: flex;
-  margin: 0;
-  padding: 0;
+  list-style: none;
+  gap: 3rem;
 }
 
 .navbar-menu li {
-  margin: 0 15px;
   position: relative;
 }
 
-.navbar-menu a {
-  color: white;
-  font-size: 1em;
+.navbar-menu li a {
+  color: #f5f5f5;
+  font-size: 1.2rem;
+  font-weight: 600;
   text-transform: uppercase;
-  transition: color 0.3s;
+  padding: 0.7rem;
+  transition: color 0.3s ease, border-bottom 0.3s ease;
+  border-bottom: 2px solid transparent;
 }
 
-.navbar-menu a:hover {
-  color: #ff6347;
-}
-
-.navbar-menu hr {
-  border: none;
-  height: 2px;
-  background-color: #ff6347;
-  position: absolute;
-  bottom: -5px;
-  left: 0;
-  right: 0;
+/* Style for the active menu item */
+.navbar-menu li.active a {
+  color: #00aaff; /* Active color */
+  border-bottom: 2px solid #00aaff; /* Fixed underline for active item */
 }
 
 .navbar-login-cart {
   display: flex;
   align-items: center;
-}
-
-.navbar-login-cart a {
-  color: white;
-  text-decoration: none;
-  margin-left: 15px;
+  gap: 2rem;
 }
 
 .navbar-login-cart button {
-  background-color: #ff6347;
+  padding: 0.7rem 1.5rem;
+  background-color: #e94560;
+  color: #fff;
   border: none;
-  color: white;
-  padding: 10px 20px;
+  border-radius: 6px;
   cursor: pointer;
-  transition: background-color 0.3s;
+  font-weight: bold;
+  font-size: 1rem;
+  transition: background-color 0.3s ease, transform 0.3s ease;
 }
 
 .navbar-login-cart button:hover {
-  background-color: #ff4500;
+  background-color: #c0392b;
+  transform: scale(1.05);
 }
 
-.navbar-login-cart img {
-  height: 30px;
-  margin-left: 15px;
+.navbar-login-cart a img {
+  height: 35px;
+  transition: transform 0.3s ease, filter 0.3s ease;
+  filter: brightness(0) invert(1);
 }
 
 .nav-cart-count {
-  background-color: #ff6347;
+  background-color: #e94560;
+  color: #fff;
   border-radius: 50%;
-  padding: 5px 10px;
-  margin-left: 10px;
-  font-size: 0.9em;
+  padding: 0.3rem 0.8rem;
+  font-size: 0.9rem;
+  position: absolute;
+  top: 5px;
+  right: 5px;
 }
 
-@media (max-width: 1280px) {
+.nav-menu-visible {
+  display: flex;
+  flex-direction: column;
+  position: absolute;
+  top: 70px;
+  right: 30px;
+  background-color: #16213e;
+  border-radius: 8px;
+  padding: 1rem;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+  z-index: 1000;
+}
+
+.nav-dropdown.open {
+  transform: rotate(180deg);
+}
+
+@media (max-width: 768px) {
   .navbar-menu {
-    padding: 12px 50px;
-  }
-  .nav-logo img{
-    width: 40px;
-  }
-  .nav-logo p{
-    font-size: 25px;
-  }
-  .nav-menu{
-    gap:30px;
-    font-size: 16px;
-  }
-  .nav-login-cart{
-    gap:30px;
-  }
-  .nav-login-cart button{
-    width: 120px;
-    height: 45px;
-    font-size: 16px;
-  }
-  .nav-cart-count{
-    margin-left: -40px;
-    font-size: 12px;
-  }
-}
-
-.nav-dropdown{
-  display: none;
-}
-
-@media (max-width: 1020px) {
-  .navbar{
-    padding: 12px 30px;
-  }
-  .nav-menu{
-    gap: 20px;
-    font-size: 14px;
-  }
-  .nav-login-cart button{
-    width: 80px;
-    height: 35px;
-    font-size: 14px;
-  }
-  .nav-login-cart img{
-    width: 30px;
-  }
-  .nav-cart-count{
-    width: 18px;
-    height: 18px;
-  }
-}
-
-@media (max-width: 800px) {
-  .navbar{
-    padding: 10px 0px;
-  }
-  .nav-dropdown{
-    display: block;
-    width: 30px;
-    rotate: -90deg;
-    transition: 0.5s;
-  }
-  .nav-menu{
     display: none;
-    height: 80px;
-    width: 100%;
-    position: absolute;
-    background: white;
-    justify-content: center;
-    top: 50px;
-  }
-  .nav-menu-visible{
-    display: flex;
   }
 
-  .nav-dropdown.open{
-    transform: rotate(90deg);
-  }
-}
-
-@media (max-width: 500px){
-  .navbar{
-    width: 8px 0px;
-    gap: 0;
-  }
-  .nav-logo{
-    transform: scale(0.8);
-  }
-  .nav-menu{
-    height: 70px;
-    width: 50px;
-  }
-  .nav-login-cart{
-    transform: scale(0.8);
+  .nav-dropdown {
+    display: block;
   }
 }
