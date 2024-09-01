@@ -1,4 +1,5 @@
 import React, { useContext, useState, useRef } from "react";
+import { useNavigate, Link } from "react-router-dom";
 import "./Navbar.css";
 import logo from "../Assets/logo.png";
 import cart_icon from "../Assets/cart_icon.png";
@@ -6,9 +7,10 @@ import { ShopContext } from "../../Context/ShopContext";
 import nav_dropdown from "../Assets/nav_dropdown.png";
 
 function Navbar() {
-  const [activeMenu, setActiveMenu] = useState("Shop"); // Track the active menu item
+  const [activeMenu, setActiveMenu] = useState("/shop");
   const { getTotalCartItems } = useContext(ShopContext);
   const menuRef = useRef();
+  const navigate = useNavigate();
 
   const toggleDropdown = (e) => {
     menuRef.current.classList.toggle("nav-menu-visible");
@@ -16,14 +18,18 @@ function Navbar() {
   };
 
   const handleMenuClick = (menuName) => {
-    setActiveMenu(menuName); // Update the active menu item on click
+    const route = `/${menuName.toLowerCase()}`;
+    setActiveMenu(route);
+    navigate(route);
   };
 
   return (
     <div className="navbar">
       <div className="navbar-logo">
-        <img src={logo} alt="MegaMart Logo" />
-        <p>MegaMart</p>
+        <Link to="/" className="logo-link">
+          <img src={logo} alt="MegaMart Logo" className="logo-image" />
+          <p className="logo-text">MegaMart</p>
+        </Link>
       </div>
       <img
         className="nav-dropdown"
@@ -33,14 +39,10 @@ function Navbar() {
       />
       <ul ref={menuRef} className="navbar-menu">
         {["Shop", "Mens", "Womens", "Kids"].map((menuName) => (
-          <li
-            key={menuName}
-            onClick={() => handleMenuClick(menuName)}
-          >
+          <li key={menuName} onClick={() => handleMenuClick(menuName)}>
             <a
               href={`/${menuName.toLowerCase()}`}
-              style={{ textDecoration: "none" }}
-              className={activeMenu === menuName ? "active" : ""}
+              className={activeMenu === `/${menuName.toLowerCase()}` ? "active" : ""}
             >
               {menuName.toUpperCase()}
             </a>
@@ -52,7 +54,7 @@ function Navbar() {
           <button
             onClick={() => {
               localStorage.removeItem("auth-token");
-              window.location.replace("/");
+              navigate("/"); // Redirect to home page
             }}
           >
             Logout

@@ -1,49 +1,73 @@
+/* Container styling for the popular section */
 .popular {
   text-align: center;
-  padding: 20px;
+  padding: 40px 5%;
+  background: linear-gradient(135deg, #9de9ab, #e9c5e7);
+  border-radius: 12px;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+  margin-top: 80px;
+  margin-bottom: 100px;
 }
 
+/* Title styling */
 .popular h1 {
-  font-size: 2em;
-  margin-bottom: 10px;
+  font-size: 3em;
+  margin-bottom: 20px;
+  font-weight: 700;
+  color: rgb(43, 36, 36);
+  text-transform: uppercase;
+  font-family: 'Roboto', sans-serif;
 }
 
+/* Horizontal rule styling */
 .popular hr {
-  margin: 20px 0;
+  width: 200px;
+  height: 2px;
+  margin: 20px auto;
+  background: #007bff;
+  border: none;
 }
 
+/* Grid layout for items */
 .popular-item {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
   gap: 20px;
+  margin-top: 20px;
 }
 
+/* Individual item styling */
 .item {
   border: 1px solid #ddd;
-  padding: 10px;
-  border-radius: 5px;
-  text-align: left;
-  transition: transform 0.3s, box-shadow 0.3s;
+  padding: 15px;
+  border-radius: 10px;
+  text-align: center;
+  background: white;
+  transition: transform 0.3s, box-shadow 0.3s, background-color 0.3s;
 }
 
 .item:hover {
   transform: translateY(-5px);
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+  background-color: #f1f1f1;
 }
 
+/* Image styling */
 .item img {
   max-width: 100%;
   height: auto;
-  display: block;
+  border-radius: 8px;
   margin-bottom: 10px;
-  border-radius: 5px;
 }
 
+/* Name styling */
 .item .name {
-  font-size: 1.2em;
+  font-size: 1.3em;
   margin-bottom: 5px;
+  color: #333;
 }
 
+/* Price styling */
 .item .price {
   font-size: 1em;
   color: #888;
@@ -58,64 +82,49 @@
   text-decoration: line-through;
 }
 
-@media(max-width: 1280px) {
-  .popular{
-    height: 70vh;
+/* Responsive adjustments */
+@media (max-width: 1280px) {
+  .popular h1 {
+    font-size: 2.5em;
   }
-  .popular h1{
-    font-size: 40px;
-  }
-  .popular hr{
+  .popular hr {
     width: 160px;
   }
-  .popular-item{
-    gap:20px;
-    margin-top: 30px;
+}
+
+@media (max-width: 1024px) {
+  .popular h1 {
+    font-size: 2.2em;
+  }
+  .popular hr {
+    width: 140px;
   }
 }
 
-@media(max-width: 1280px) {
-  .popular{
-    height: 60vh;
+@media (max-width: 800px) {
+  .popular {
+    padding: 30px 5%;
   }
-  .popular h1{
-    font-size: 30px;
+  .popular h1 {
+    font-size: 1.8em;
   }
-  .popular hr{
+  .popular hr {
     width: 120px;
-    height: 3px;
-  }
-  .popular-item{
-    gap: 15px;
-    margin-top: 20px;
   }
 }
 
-@media(max-width: 800px) {
-  .popular{
-    height: 50vh;
-    gap: 6px;
+@media (max-width: 500px) {
+  .popular {
+    padding: 20px;
   }
-  .popular h1{
-    font-size: 20px;
+  .popular h1 {
+    font-size: 1.5em;
   }
-  .popular hr{
+  .popular hr {
     width: 100px;
   }
-  .popular-item{
-    gap: 5px;
-  }
-}
-
-
-@media(max-width: 500px) {
-  .popular{
-    height: 90vh;
-  }
-  .popular-item{
-    display: grid;
+  .popular-item {
     grid-template-columns: 1fr 1fr;
-    gap: 20px;
+    gap: 15px;
   }
 }
-

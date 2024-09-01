@@ -4,8 +4,9 @@
   align-items: center;
   padding: 20px;
   background-color: #f9f9f9;
-  margin-top: 50px;
-  margin-bottom: 50px;
+  margin: 50px 0;
+  border-radius: 10px; /* Rounded corners for a modern look */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow */
 }
 
 .Product-Display-left {
@@ -23,20 +24,29 @@
 
 .Product-Display-image-list img {
   height: 120px;
+  border-radius: 8px; /* Rounded corners for images */
+  transition: transform 0.3s ease; /* Smooth hover effect */
+}
+
+.Product-Display-image-list img:hover {
+  transform: scale(1.05); /* Slight zoom on hover */
 }
 
 .Product-Display-Main-img {
   width: auto;
   height: 510px;
+  border-radius: 10px; /* Rounded corners */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow */
 }
 
 .Product-Display-right {
   flex: 1;
-  margin: 0px 30px;
+  margin: 0 30px;
 }
 
 .Product-Display-right h1 {
   font-size: 22px;
+  color: #333; /* Darker color for better readability */
 }
 
 .Product-Display-Right-star {
@@ -47,8 +57,10 @@
 }
 
 .Product-Display-Right-Prices {
-  margin: 10px 0px;
+  margin: 10px 0;
   font-size: 18px;
+  display: flex;
+  gap: 10px; /* Space between old and new prices */
 }
 
 .ProductDisplay-Right-Prices-Old {
@@ -63,15 +75,20 @@
 
 .ProductDisplay-right-description {
   font-size: 13px;
+  color: #555; /* Slightly lighter color for description */
 }
 
 .ProductDisplay-Right-size h1 {
   margin-top: 20px;
   font-size: 20px;
+  color: #333; /* Darker color for better readability */
 }
 
 .ProductDisplay-Right-size div {
   padding: 14px 20px;
+  border: 1px solid #ddd; /* Border for size options */
+  border-radius: 5px; /* Rounded corners */
+  background-color: #fff; /* White background */
 }
 
 .ProductDisplay-Right-size {
@@ -82,13 +99,15 @@
 
 .ProductDisplay-Right button {
   width: 150px;
-  padding: 15px 0px;
+  padding: 15px 0;
   margin-bottom: 20px;
   background-color: #007bff;
   color: #fff;
   border: none;
   border-radius: 5px;
   cursor: pointer;
+  font-size: 16px; /* Larger font size for better readability */
+  transition: background-color 0.3s ease; /* Smooth color transition */
 }
 
 .ProductDisplay-Right button:hover {
@@ -98,20 +117,19 @@
 .Product-Display-Right-Category {
   margin-top: 5px;
   font-size: 14px;
+  color: #666; /* Lighter color for category */
 }
 
 .Product-Display-right-brand {
   font-size: 14px;
+  color: #444; /* Slightly darker color for brand */
 }
 
 @media (max-width: 1280px) {
   .ProductDisplay {
-    margin: 0px 60px;
+    margin: 0 60px;
   }
   .Product-Display-left {
-    gap: 10px;
-  }
-  .Product-Display-image-list {
     gap: 10px;
   }
   .Product-Display-image-list img {
@@ -121,7 +139,7 @@
     height: 510px;
   }
   .Product-Display-right {
-    margin: 0px 30px;
+    margin: 0 30px;
   }
   .Product-Display-right h1 {
     font-size: 22px;
@@ -131,7 +149,7 @@
     font-size: 13px;
   }
   .Product-Display-Right-Prices {
-    margin: 10px 0px;
+    margin: 10px 0;
     font-size: 18px;
   }
   .ProductDisplay-right-description {
@@ -146,7 +164,7 @@
   }
   .ProductDisplay-Right button {
     width: 150px;
-    padding: 15px 0px;
+    padding: 15px 0;
     margin-bottom: 20px;
   }
   .Product-Display-Right-Category {
@@ -157,7 +175,7 @@
 
 @media (max-width: 1024px) {
   .ProductDisplay {
-    margin: 0px 30px;
+    margin: 0 30px;
   }
   .Product-Display-left {
     gap: 5px;
@@ -178,7 +196,7 @@
     font-size: 12px;
   }
   .ProductDisplay-Right-size {
-    margin-top: 10px 0px;
+    margin-top: 10px 0;
   }
   .ProductDisplay-Right-size div {
     padding: 10px 16px;
@@ -186,7 +204,7 @@
   }
   .ProductDisplay-Right button {
     width: 120px;
-    padding: 10px 0px;
+    padding: 10px 0;
     margin-bottom: 10px;
     font-size: 14px;
   }
@@ -197,10 +215,10 @@
 
 @media (max-width: 800px) {
   .ProductDisplay {
-    margin: 0px 10px;
+    margin: 0 10px;
   }
   .Product-Display-left {
-    gap: 0px;
+    gap: 0;
     flex-direction: column-reverse;
     align-items: center;
   }
@@ -224,7 +242,7 @@
     font-size: 10px;
   }
   .ProductDisplay-Right-size h1 {
-    margin-top: 10px 0px;
+    margin-top: 10px 0;
   }
   .ProductDisplay-Right-size {
     margin-top: 10px;
@@ -249,7 +267,7 @@
   .Product-Display-left {
     gap: 10px;
     flex-direction: row;
-    align-items: auto;
+    align-items: flex-start;
   }
   .Product-Display-image-list {
     flex-direction: column;
@@ -274,7 +292,7 @@
   }
   .ProductDisplay-Right-size {
     gap: 10px;
-    margin: 30px 0px;
+    margin: 30px 0;
   }
   .ProductDisplay-Right-size div {
     padding: 10px 16px;
@@ -282,7 +300,7 @@
   }
   .ProductDisplay-Right button {
     width: 130px;
-    padding: 12px 0px;
+    padding: 12px 0;
     font-size: 15px;
   }
   .Product-Display-Right-Category {

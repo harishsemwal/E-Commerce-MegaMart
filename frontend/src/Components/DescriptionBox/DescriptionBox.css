@@ -1,48 +1,74 @@
 .DescriptionBox {
-    margin: 120px 170px;
+  margin: 120px 170px;
+  background-color: #f9f9f9; /* Light background for the description box */
+  border-radius: 8px; /* Rounded corners */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Soft shadow */
 }
 
 .Description-Box-Navigator {
   display: flex;
+  gap: 10px; /* Space between navigation items */
 }
 
 .Description-Box-Navbox {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 16px;
-    font-weight: 600;
-    width: 171px;
-    height: 70px;
-    border: 1px solid #d0d0d0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 16px;
+  font-weight: 600;
+  width: 171px;
+  height: 70px;
+  border: 1px solid #d0d0d0;
+  border-radius: 4px; /* Rounded corners */
+  background-color: #ffffff; /* Background color */
+  transition: background-color 0.3s ease, color 0.3s ease; /* Smooth transition */
+}
+
+.Description-Box-Navbox:hover {
+  background-color: #e0e0e0; /* Hover effect */
+  color: #333; /* Darker text color on hover */
 }
 
 .Description-Box-Navbox.fade {
-    background: #FBFBFB;
-    color: #555;
-    opacity: 0.5;
+  background: #FBFBFB;
+  color: #555;
+  opacity: 0.5;
 }
 
 .Description-Box-Discription {
-    display: flex;
-    flex-direction: column;
-    gap: 25px;
-    border: 1px solid #d0d0d0;
-    padding: 48px;
-    padding-bottom: 70px;
+  display: flex;
+  flex-direction: column;
+  gap: 25px;
+  border: 1px solid #d0d0d0;
+  border-radius: 8px; /* Rounded corners */
+  padding: 48px;
+  padding-bottom: 70px;
+  background-color: #ffffff; /* Background color */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Soft shadow */
 }
 
 @media(max-width:1280px) {
-  .DescriptionBox{
-    margin: 60px;
+  .DescriptionBox {
+      margin: 60px;
   }
 }
 
 @media(max-width:1024px) {
-  .DescriptionBox{
-    margin: 60px 20px;
+  .DescriptionBox {
+      margin: 60px 20px;
   }
-  .Description-Box-Discription{
-    font-size: 14px;
+  .Description-Box-Discription {
+      font-size: 14px;
+  }
+}
+
+@media(max-width:768px) {
+  .Description-Box-Navbox {
+      font-size: 14px;
+      width: auto; /* Adjust width for smaller screens */
+  }
+  .Description-Box-Discription {
+      font-size: 13px;
+      padding: 30px; /* Reduce padding for smaller screens */
   }
 }

@@ -2,14 +2,18 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 10px;
+  gap: 20px; /* Increased gap for better spacing */
   height: 90vh;
+  background-color: #f9f9f9; /* Light background for the section */
+  padding: 20px; /* Add padding around the section */
 }
 
 .relatedProduct h1 {
   color: #171717;
   font-size: 50px;
   font-weight: 600;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1); /* Add subtle text shadow */
+  margin-bottom: 10px; /* Space below the heading */
 }
 
 .relatedProduct hr {
@@ -17,17 +21,21 @@
   height: 6px;
   border-radius: 10px;
   background: #252525;
+  margin-bottom: 20px; /* Space below the line */
 }
 
 .relatedProduct-item {
-  margin: 50px;
+  margin: 50px 0; /* Vertical margins only */
   display: flex;
   gap: 30px;
+  flex-wrap: wrap; /* Allow items to wrap if necessary */
+  justify-content: center; /* Center items */
 }
 
 @media (max-width: 1280px) {
   .relatedProduct {
     height: 70vh;
+    padding: 15px; /* Adjust padding for smaller screens */
   }
   .relatedProduct h1 {
     font-size: 40px;
@@ -61,7 +69,7 @@
 @media (max-width: 800px) {
   .relatedProduct {
     height: 50vh;
-    gap: 6px;
+    gap: 10px; /* Increased gap for smaller screens */
   }
   .relatedProduct h1 {
     font-size: 20px;
@@ -70,17 +78,19 @@
     width: 100px;
   }
   .relatedProduct-item {
-    gap: 5px;
+    gap: 10px;
   }
 }
 
 @media (max-width: 500px) {
   .relatedProduct {
-    height: 90vh;
+    height: auto; /* Adjust height for small screens */
+    padding: 10px; /* Less padding on very small screens */
   }
   .relatedProduct-item {
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 20px;
+    margin: 0; /* Remove margin for grid layout */
   }
 }
