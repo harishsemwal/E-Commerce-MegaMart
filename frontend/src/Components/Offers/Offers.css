@@ -53,7 +53,7 @@
 
 .offers-right img {
   width: 100%;
-  height: auto;
+  height: 90vh;
   border-radius: 12px;
   box-shadow: 0 2px 10px gold;
 }

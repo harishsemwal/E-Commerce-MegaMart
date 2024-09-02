@@ -2,7 +2,7 @@
   height: 100vh;
   background: linear-gradient(
     180deg,
-    #16d60c,
+    #2397ef,
     #0505c622
   ); /* Gradient background */
   display: flex;
@@ -60,11 +60,11 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  margin-bottom: 10;
+  margin-bottom: 10px; /* Added 'px' unit */
 }
 
 .hero-right img {
-  width: 550px;
+  width: 680px;
 }
 
 @media (max-width: 1280px) {
@@ -80,7 +80,7 @@
     font-size: 60px;
   }
 
-  .hand-hand-icon img {
+  .hand-icon img { /* Fixed class name */
     width: 80px;
   }
 
@@ -110,7 +110,7 @@
     font-size: 50px;
   }
 
-  .hand-hand-icon img {
+  .hand-icon img { /* Fixed class name */
     width: 65px;
   }
 
@@ -138,7 +138,7 @@
     font-size: 40px;
   }
 
-  .hand-hand-icon img {
+  .hand-icon img { /* Fixed class name */
     width: 50px;
   }
 
@@ -166,7 +166,7 @@
   .hero-left p {
     font-size: 50px;
   }
-  .hero-hand-icon img {
+  .hand-icon img { /* Fixed class name */
     width: 55px;
   }
   .hero-latest-btn {

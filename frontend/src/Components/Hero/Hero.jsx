@@ -8,7 +8,7 @@ function Hero() {
   return (
     <div className="hero">
       <div className="hero-left">
-        <h2>Welcome to MegaMart</h2>
+        <h2>WELCOME TO MEGAMART</h2>
         <div>
           <div className="hand-icon">
             <p>New</p>

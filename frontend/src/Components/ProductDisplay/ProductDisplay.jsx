@@ -6,39 +6,40 @@ import { ShopContext } from "../../Context/ShopContext";
 
 function ProductDisplay({ product }) {
   const { addToCart } = useContext(ShopContext);
+
   return (
     <div className="ProductDisplay">
       <div className="Product-Display-left">
         <div className="Product-Display-image-list">
-          <img src={product.image} alt="" />
-          <img src={product.image} alt="" />
-          <img src={product.image} alt="" />
-          <img src={product.image} alt="" />
+          <img src={product.image} alt={product.name} />
+          <img src={product.image} alt={product.name} />
+          <img src={product.image} alt={product.name} />
+          <img src={product.image} alt={product.name} />
         </div>
         <div className="Product-Display-image">
           <img
             className="Product-Display-Main-img"
             src={product.image}
-            alt=""
+            alt={product.name}
           />
         </div>
       </div>
       <div className="Product-Display-right">
         <h1>{product.name}</h1>
         <div className="Product-Display-Right-star">
-          <img src={star_icon} alt="" />
-          <img src={star_icon} alt="" />
-          <img src={star_icon} alt="" />
-          <img src={star_icon} alt="" />
-          <img src={star_dull_icon} alt="" />
+          <img src={star_icon} alt="star" />
+          <img src={star_icon} alt="star" />
+          <img src={star_icon} alt="star" />
+          <img src={star_icon} alt="star" />
+          <img src={star_dull_icon} alt="star" />
           <p>(122)</p>
         </div>
         <div className="Product-Display-Right-Prices">
           <div className="ProductDisplay-Right-Prices-Old">
-            ${product.old_price * 80}
+            ₹{product.old_price * 80}
           </div>
           <div className="ProductDisplay-Right-Price-New">
-            ${product.new_price * 80}
+            ₹{product.new_price * 80}
           </div>
         </div>
         <div className="ProductDisplay-right-description">
@@ -47,7 +48,7 @@ function ProductDisplay({ product }) {
         </div>
         <div className="ProductDisplay-Right-size">
           <h1>Select Size</h1>
-          <div className="ProductDisplay-Right-size">
+          <div className="ProductDisplay-Right-size-options">
             <div>S</div>
             <div>M</div>
             <div>L</div>
@@ -60,7 +61,7 @@ function ProductDisplay({ product }) {
           <span>Category: </span>{product.category}, T-Shirt Crop Top
         </p>
         <p className="Product-Display-right-brand">
-          <span>Tags: </span>Modern, Late{" "}
+          <span>Tags: </span>Modern, Late
         </p>
       </div>
     </div>

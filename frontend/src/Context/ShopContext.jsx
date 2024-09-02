@@ -1,4 +1,5 @@
 import React, { createContext, useEffect, useState, useCallback } from "react";
+import axios from 'axios';
 
 export const ShopContext = createContext(null);
 
@@ -13,69 +14,52 @@ const getDefaultCart = () => {
 const ShopContextProvider = (props) => {
   const [all_products, setAll_Products] = useState([]);
   const [cartItem, setCartItem] = useState(getDefaultCart());
+  const [authToken, setAuthToken] = useState(localStorage.getItem("auth-token") || "");
 
   useEffect(() => {
-    fetch("https://localhost:4000/allproduct")
-      .then((response) => response.json())
-      .then((data) => setAll_Products(data))
+    axios.get("http://localhost:4000/allproduct")
+      .then((response) => {
+        console.log("Fetched Products:", response.data);
+        setAll_Products(response.data);
+      })
       .catch((error) => console.error("Error fetching products:", error));
 
-    const authToken = localStorage.getItem("auth-token");
     if (authToken) {
-      fetch("https://localhost:4000/getcart", {
-        method: "POST",
-        headers: {
-          Accept: "application/json",
-          "auth-token": authToken,
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({}),
+      axios.post("http://localhost:4000/getcart", {}, {
+        headers: { "auth-token": authToken }
       })
-        .then((response) => response.json())
-        .then((data) => setCartItem(data))
+        .then((response) => {
+          console.log("Fetched Cart Items:", response.data);
+          setCartItem(response.data);
+        })
         .catch((error) => console.error("Error fetching cart items:", error));
     }
-  }, []);
+  }, [authToken]);
 
   const addToCart = useCallback((itemId) => {
     setCartItem((prev) => ({ ...prev, [itemId]: prev[itemId] + 1 }));
-    const authToken = localStorage.getItem("auth-token");
     if (authToken) {
-      fetch("https://localhost:4000/addtocart", {
-        method: "POST",
-        headers: {
-          Accept: "application/json",
-          "auth-token": authToken,
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ itemId }),
+      axios.post("http://localhost:4000/addtocart", { itemId }, {
+        headers: { "auth-token": authToken }
       })
-        .then((response) => response.json())
-        .then((data) => console.log(data))
+        .then((response) => console.log(response.data))
         .catch((error) => console.error("Error adding item to cart:", error));
     }
-  }, []);
+  }, [authToken]);
 
   const removeFromCart = useCallback((itemId) => {
     setCartItem((prev) => ({
       ...prev,
       [itemId]: Math.max(prev[itemId] - 1, 0),
     }));
-    const authToken = localStorage.getItem("auth-token");
     if (authToken) {
-      fetch("https://localhost:4000/removefromcart", {
-        method: "POST",
-        headers: {
-          Accept: "application/json",
-          "auth-token": authToken,
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ itemId }),
+      axios.post("http://localhost:4000/removefromcart", { itemId }, {
+        headers: { "auth-token": authToken }
       })
-        .then((response) => response.json())
+        .then((response) => console.log(response.data))
         .catch((error) => console.error("Error removing item from cart:", error));
     }
-  }, []);
+  }, [authToken]);
 
   const getTotalCartAmount = () => {
     let totalAmount = 0;
@@ -102,6 +86,34 @@ const ShopContextProvider = (props) => {
     return totalItems;
   };
 
+  const login = (email, password) => {
+    axios.post("http://localhost:4000/login", { email, password })
+      .then((response) => {
+        if (response.data.success) {
+          const token = response.data.token;
+          localStorage.setItem("auth-token", token);
+          setAuthToken(token);
+        } else {
+          console.error("Login failed:", response.data.errors);
+        }
+      })
+      .catch((error) => console.error("Error logging in:", error));
+  };
+
+  const signup = (name, email, password) => {
+    axios.post("http://localhost:4000/signup", { name, email, password })
+      .then((response) => {
+        if (response.data.success) {
+          const token = response.data.token;
+          localStorage.setItem("auth-token", token);
+          setAuthToken(token);
+        } else {
+          console.error("Signup failed:", response.data.message);
+        }
+      })
+      .catch((error) => console.error("Error signing up:", error));
+  };
+
   const contextValue = {
     getTotalCartItems,
     getTotalCartAmount,
@@ -109,6 +121,8 @@ const ShopContextProvider = (props) => {
     cartItem,
     addToCart,
     removeFromCart,
+    login,
+    signup,
   };
 
   return (

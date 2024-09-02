@@ -42,7 +42,9 @@ function Navbar() {
           <li key={menuName} onClick={() => handleMenuClick(menuName)}>
             <a
               href={`/${menuName.toLowerCase()}`}
-              className={activeMenu === `/${menuName.toLowerCase()}` ? "active" : ""}
+              className={
+                activeMenu === `/${menuName.toLowerCase()}` ? "active" : ""
+              }
             >
               {menuName.toUpperCase()}
             </a>
