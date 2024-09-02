@@ -29,8 +29,6 @@ The E-Commerce MegaMart project is built using the MERN stack, which includes:
 - **Product Management**: Admin can add, update, or delete products.
 - **Order Management**: Users can view their orders; Admin can manage order statuses.
 - **Responsive Design**: Optimized for both desktop and mobile devices.
-- **Payment Integration**: Supports various payment methods for seamless transactions.
-- **Search and Filters**: Advanced search and filtering options for products.
 
 ## 📸 Screenshots
 ![Screenshot 2024-09-03 001414](https://github.com/user-attachments/assets/83a18528-c6b1-4ab5-883f-40497db12765)
