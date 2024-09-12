@@ -7,7 +7,10 @@ const ListProduct = () => {
 
   const fetchInfo = async () => {
     try {
-      const res = await fetch("http://localhost:4000/allproduct");
+      // Updated URL for fetching all products
+      const res = await fetch(
+        "https://e-commerce-megamart-backend.onrender.com/allproduct"
+      );
       const data = await res.json();
       setAllProducts(data);
     } catch (error) {
@@ -21,14 +24,18 @@ const ListProduct = () => {
 
   const removeProduct = async (id) => {
     try {
-      await fetch("http://localhost:4000/removeproduct", {
-        method: "POST",
-        headers: {
-          Accept: "application/json",
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ id: id }),
-      });
+      // Updated URL for removing a product
+      await fetch(
+        "https://e-commerce-megamart-backend.onrender.com/removeproduct",
+        {
+          method: "POST",
+          headers: {
+            Accept: "application/json",
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({ id: id }),
+        }
+      );
       fetchInfo(); // Refresh the product list after removing
     } catch (error) {
       console.error("Error removing product:", error);

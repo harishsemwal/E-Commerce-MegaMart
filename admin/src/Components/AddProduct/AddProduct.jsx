@@ -29,7 +29,8 @@ const AddProduct = () => {
     formData.append("product", image);
 
     try {
-      const uploadResponse = await fetch("http://localhost:4000/upload", {
+      // Updated URL for image upload
+      const uploadResponse = await fetch("https://e-commerce-megamart-backend.onrender.com/upload", {
         method: "POST",
         headers: {
           Accept: "application/json",
@@ -43,8 +44,9 @@ const AddProduct = () => {
         product.image = responseData.image_url;
         console.log(product);
 
+        // Updated URL for adding a product
         const addProductResponse = await fetch(
-          "http://localhost:4000/addproduct",
+          "https://e-commerce-megamart-backend.onrender.com/addproduct",
           {
             method: "POST",
             headers: {
