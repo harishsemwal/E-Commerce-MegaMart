@@ -70,7 +70,7 @@ const ListProduct = () => {
               <img
                 onClick={() => removeProduct(product.id)}
                 className="listproduct-remove-icon"
-                src={cross_icon}
+                src={cross_icon }
                 alt="Remove"
               />
             </div>
