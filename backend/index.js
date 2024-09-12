@@ -1,4 +1,3 @@
-const port = 4000;
 const express = require("express");
 const app = express();
 const mongoose = require("mongoose");
@@ -7,6 +6,8 @@ const multer = require("multer");
 const path = require("path");
 const cors = require("cors");
 const fs = require("fs");
+
+const port = process.env.PORT || 4000;
 
 // Use environment variables for sensitive information
 const JWT_SECRET = process.env.JWT_SECRET || "your_default_secret"; // Replace 'your_default_secret' with a secure default if needed
